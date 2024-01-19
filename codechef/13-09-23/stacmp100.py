@@ -2,18 +2,17 @@ t = int(input())
 for _ in range(t):
     n = int(input())
     x = input()
-    position = -1
-    for i in range(n):
-        if x[i] == '1':
-            position = i
-            break
-
-    if position == -1 or position == (n - 1) or position == (n - 2):
-        print(x)
+    one_found = False
+    for i in x[:-2]:
+        if i == '0':
+            print('0', end="")
+        elif i == '1' and one_found is False:
+            print('1', end="")
+            one_found = True
+        else:
+            print("0", end='')
+    if one_found is False:
+        print(x[-2:])
     else:
-        for i in range(position):
-            print('0', end='')
-        print('1', end='')
-        for i in range(position + 1, n):
-            print('0', end='')
-        print()
+        print("00")
+    print()
